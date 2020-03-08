@@ -28,6 +28,7 @@ public class Switch : InteractiveObject
     {
         if(thisTransform.eulerAngles.z != startAngle)
         {
+            startAngle = thisTransform.eulerAngles.z;
             InteractiveObjectCheck();
         }
     }

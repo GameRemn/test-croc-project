@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class WindowMessage : MonoBehaviour
 {
-    public bool finalMassage;
+    public bool finalMessage;
     public TextMesh text;
     private void Awake()
     {
@@ -13,7 +13,7 @@ public class WindowMessage : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (finalMassage)
+        if (finalMessage)
             SceneManager.LoadScene(0);
         Destroy(gameObject);
     }

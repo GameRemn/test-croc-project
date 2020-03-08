@@ -8,12 +8,14 @@ public class Scenario : MonoBehaviour
     public List<Stage> Stages;
     public Transform textPrefab;
     [HideInInspector]
-    public int enumerator = -1;
+    public int enumerator;
 
     private void Awake()
     {
-        CreateWindowMassage(scenarioName, 3);
-        for (int i = 0; i < Stages.Count; i++)
+        CreateWindowMessage(scenarioName, 3);
+        enumerator = -1;
+        int stagesCount = Stages.Count;
+        for (int i = 0; i < stagesCount; i++)
         {
             Stages[i].StageGrouping(this);
         }
@@ -25,19 +27,20 @@ public class Scenario : MonoBehaviour
         if (enumerator == Stages.Count)
         {
             enumerator = -1;
-            CreateWindowMassage("Результат", 3 ,true);
+            CreateWindowMessage("Поздравляем, \nсценарий заврешён,\nколичество ошибок: " + InteractiveObject.errorCount + "!", 3 ,true);
         }
         else
         {
-            CreateWindowMassage(Stages[enumerator].stageName, 2);
+            CreateWindowMessage(Stages[enumerator].stageName, 2);
+            Stages[enumerator].NextAct();
         }
     }
-    public void CreateWindowMassage(string message, int layer, bool finalMessage = false)
+    public void CreateWindowMessage(string message, int layer, bool finalMessage = false)
     {
         WindowMessage wm = Instantiate(textPrefab).GetComponent<WindowMessage>();
         wm.transform.position = new Vector3(0, 0, -layer);
         wm.text.text = message;
-        wm.finalMassage = finalMessage;
+        wm.finalMessage = finalMessage;
     }
 }
 

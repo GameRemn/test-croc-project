@@ -9,15 +9,16 @@ public class Stage
     public List<Act> Acts;
     [System.NonSerialized] public Scenario myScenario;
     [HideInInspector]
-    public int enumerator = -1;
+    public int enumerator;
     public void StageGrouping(Scenario scenario)
     {
         myScenario = scenario;
-        for(int i = 0; i < Acts.Count; i++)
+        enumerator = -1;
+        int actsCount = Acts.Count;
+        for(int i = 0; i < actsCount; i++)
         {
             Acts[i].ActGrouping(this);
         }
-        NextAct();
     }
     public void NextAct()
     {
@@ -29,7 +30,7 @@ public class Stage
         }
         else
         {
-            myScenario.CreateWindowMassage(Acts[enumerator].actDescription + " " + Acts[enumerator].interactiveObject.name, 1);
+            myScenario.CreateWindowMessage(Acts[enumerator].actDescription + " " + Acts[enumerator].interactiveObject.name, 1);
         }
     }
 }

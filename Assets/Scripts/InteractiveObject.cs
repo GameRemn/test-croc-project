@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractiveObject : MonoBehaviour // если ты слышал про solid, то должен был сделать интерфейс The Liskov Substitution Principle
+public class InteractiveObject : MonoBehaviour
 {
     protected SpriteRenderer sr;
     protected List<Act> myActs = new List<Act>();
@@ -23,7 +23,7 @@ public class InteractiveObject : MonoBehaviour // если ты слышал п�
     {
         myActs.Add(act);
     }
-    public void InteractiveObjectCheck() // не совсем понятно что именно проверяет этот метод - либо придумай название получше, либо напиши коммент, но лушче название
+    public void InteractiveObjectCheck()
     {
         if (myActs.Count > 0)
         {
@@ -35,7 +35,7 @@ public class InteractiveObject : MonoBehaviour // если ты слышал п�
             }
             if (!result)
             {
-                myActs[0].myStage.myScenario.CreateWindowMassage("Критическая ошибка!\n" + name + " была использована в неправильном порядке!", 4, true);
+                myActs[0].myStage.myScenario.CreateWindowMessage("Критическая ошибка!\n" + name + " была \nиспользована в \nнеправильном порядке!", 4, true);
             }
         }
         else
